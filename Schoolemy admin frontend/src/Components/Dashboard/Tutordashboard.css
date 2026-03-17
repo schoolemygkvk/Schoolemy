@@ -1,0 +1,84 @@
+/* TutorDashboard responsive layout helpers
+   Note: React inline styles don't support @media, so responsive rules live here. */
+
+.td-metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+
+@media (max-width: 1200px) {
+  .td-metricsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .td-metricsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.td-metricCard {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid #e2e8f0;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 0;
+}
+
+.td-metricHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.td-metricHeader--center {
+  justify-content: center;
+}
+
+.td-metricValueContainer {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.td-metricValue {
+  font-size: 32px;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1;
+  word-break: break-word;
+}
+
+.td-metricTitle {
+  font-size: 14px;
+  color: #64748b;
+  font-weight: 400;
+}
+
+@media (max-width: 768px) {
+  .td-metricCard {
+    padding: 18px;
+  }
+
+  .td-metricHeader {
+    align-items: center;
+    margin-bottom: 14px;
+  }
+
+  .td-metricValue {
+    font-size: 28px;
+  }
+}
+
