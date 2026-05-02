@@ -1,0 +1,267 @@
+/**
+ * Centralized Responsive Design Breakpoints
+ *
+ * This file defines the standard breakpoints used across the application.
+ * Using a single source of truth prevents inconsistent media queries.
+ *
+ * Breakpoint Strategy:
+ * - Mobile-first approach (styles for mobile by default)
+ * - Each breakpoint adds/overrides styles for larger screens
+ * - No "max-width" queries except for print/accessibility
+ *
+ * Breakpoints:
+ * - SM: 640px  (small phones, landscape)
+ * - MD: 768px  (tablets, landscape phones)
+ * - LG: 1024px (desktops)
+ * - XL: 1280px (large desktops)
+ */
+
+:root {
+  /* Breakpoint Values */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+
+  /* Layout Constants */
+  --max-container-width: 1200px;
+  --sidebar-width: 280px;
+  --header-height: 64px;
+}
+
+/* ============================================
+   MIXIN-LIKE COMMENTS FOR MEDIA QUERIES
+   ============================================
+
+   Instead of SCSS mixins (which aren't available in plain CSS),
+   these comments document the standard media query patterns to use:
+
+   MOBILE FIRST (default):
+   styles apply to all devices
+
+   SMALL DEVICES (640px):
+   @media (min-width: 640px) { ... }
+
+   TABLETS (768px):
+   @media (min-width: 768px) { ... }
+
+   DESKTOPS (1024px):
+   @media (min-width: 1024px) { ... }
+
+   LARGE DESKTOPS (1280px):
+   @media (min-width: 1280px) { ... }
+
+   Use min-width (mobile-first) not max-width (desktop-first)
+   Avoid mixing min-width and max-width in the same file
+   Consolidate multiple rules with same breakpoint
+*/
+
+/* ============================================
+   STANDARD RESPONSIVE UTILITIES
+   ============================================ */
+
+/* Display utilities - Mobile first */
+.block { display: block; }
+.inline { display: inline; }
+.inline-block { display: inline-block; }
+.flex { display: flex; }
+.inline-flex { display: inline-flex; }
+.grid { display: grid; }
+.hidden { display: none; }
+
+/* Small devices (640px+) */
+@media (min-width: 640px) {
+  .sm\:block { display: block !important; }
+  .sm\:inline { display: inline !important; }
+  .sm\:inline-block { display: inline-block !important; }
+  .sm\:flex { display: flex !important; }
+  .sm\:inline-flex { display: inline-flex !important; }
+  .sm\:grid { display: grid !important; }
+  .sm\:hidden { display: none !important; }
+}
+
+/* Tablets (768px+) */
+@media (min-width: 768px) {
+  .md\:block { display: block !important; }
+  .md\:inline { display: inline !important; }
+  .md\:inline-block { display: inline-block !important; }
+  .md\:flex { display: flex !important; }
+  .md\:inline-flex { display: inline-flex !important; }
+  .md\:grid { display: grid !important; }
+  .md\:hidden { display: none !important; }
+}
+
+/* Desktops (1024px+) */
+@media (min-width: 1024px) {
+  .lg\:block { display: block !important; }
+  .lg\:inline { display: inline !important; }
+  .lg\:inline-block { display: inline-block !important; }
+  .lg\:flex { display: flex !important; }
+  .lg\:inline-flex { display: inline-flex !important; }
+  .lg\:grid { display: grid !important; }
+  .lg\:hidden { display: none !important; }
+}
+
+/* Large desktops (1280px+) */
+@media (min-width: 1280px) {
+  .xl\:block { display: block !important; }
+  .xl\:inline { display: inline !important; }
+  .xl\:inline-block { display: inline-block !important; }
+  .xl\:flex { display: flex !important; }
+  .xl\:inline-flex { display: inline-flex !important; }
+  .xl\:grid { display: grid !important; }
+  .xl\:hidden { display: none !important; }
+}
+
+/* ============================================
+   FLEX/GRID UTILITIES
+   ============================================ */
+
+/* Flex direction - Mobile first (column) */
+.flex-col { flex-direction: column; }
+.flex-row { flex-direction: row; }
+.flex-wrap { flex-wrap: wrap; }
+.flex-nowrap { flex-wrap: nowrap; }
+
+/* Flex alignment */
+.items-start { align-items: flex-start; }
+.items-center { align-items: center; }
+.items-end { align-items: flex-end; }
+.items-stretch { align-items: stretch; }
+
+.justify-start { justify-content: flex-start; }
+.justify-center { justify-content: center; }
+.justify-end { justify-content: flex-end; }
+.justify-between { justify-content: space-between; }
+.justify-around { justify-content: space-around; }
+
+.gap-1 { gap: var(--spacing-1); }
+.gap-2 { gap: var(--spacing-2); }
+.gap-3 { gap: var(--spacing-3); }
+.gap-4 { gap: var(--spacing-4); }
+.gap-6 { gap: var(--spacing-6); }
+.gap-8 { gap: var(--spacing-8); }
+
+/* Grid utilities */
+.grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+.grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+/* Responsive grid - Mobile first (1 column) */
+@media (min-width: 640px) {
+  .sm\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sm\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (min-width: 768px) {
+  .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .md\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+@media (min-width: 1024px) {
+  .lg\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .lg\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+/* ============================================
+   WIDTH & HEIGHT UTILITIES
+   ============================================ */
+
+.w-full { width: 100%; }
+.w-screen { width: 100vw; }
+.h-full { height: 100%; }
+.h-screen { height: 100vh; }
+.min-h-screen { min-height: 100vh; }
+
+/* ============================================
+   SPACING UTILITIES
+   ============================================ */
+
+.p-0 { padding: 0; }
+.p-2 { padding: var(--spacing-2); }
+.p-4 { padding: var(--spacing-4); }
+.p-6 { padding: var(--spacing-6); }
+.p-8 { padding: var(--spacing-8); }
+
+.m-0 { margin: 0; }
+.m-2 { margin: var(--spacing-2); }
+.m-4 { margin: var(--spacing-4); }
+.m-auto { margin: auto; }
+
+/* ============================================
+   TEXT UTILITIES
+   ============================================ */
+
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+.text-xs { font-size: var(--text-xs); }
+.text-sm { font-size: var(--text-sm); }
+.text-base { font-size: var(--text-base); }
+.text-lg { font-size: var(--text-lg); }
+.text-xl { font-size: var(--text-xl); }
+
+/* ============================================
+   ACCESSIBILITY & PRINT
+   ============================================ */
+
+/* Screen reader only */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Print styles */
+@media print {
+  .no-print { display: none !important; }
+
+  * {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  a, a:visited {
+    text-decoration: underline;
+  }
+
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+
+  img {
+    max-width: 100% !important;
+  }
+
+  @page {
+    margin: 0.5cm;
+  }
+}
+
+/* ============================================
+   PERFORMANCE NOTES
+   ============================================
+
+   This approach optimizes performance by:
+   1. Using mobile-first CSS (smaller initial payload)
+   2. Consolidating media queries (fewer rule evaluations)
+   3. Using CSS custom properties (flexible, reusable)
+   4. Avoiding max-width queries (faster media query matches)
+   5. Grouping responsive utilities by breakpoint (cache-friendly)
+
+   Browser Paint Performance:
+   - Fewer media queries = faster paint times
+   - Consolidated breakpoints = predictable layouts
+   - CSS Grid/Flexbox = efficient reflow
+*/
